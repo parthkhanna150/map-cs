@@ -29,9 +29,18 @@ async function callEndpoint(query) {
   return response;
 }
 
+const variables = {
+  login: ['elailai94', 'parthkhanna150', 'graphcool', 'AllanWang', 'hiyangyue']
+}
+
+variables.login.map(username => {
+  return getURL(username).then(response => console.log(response)).catch(error => console.log(error));   
+})
+
 async function getURL(login) {
-  const query = `
-{
+
+  const query = 
+`{
   user(login: "${login}") {
     repositories(first: 30) {
       pageInfo {
@@ -44,19 +53,21 @@ async function getURL(login) {
         }
       }
     }
-    location
-    repository(name: "${variables.repo}") {
-      languages(first: 1) {
-        edges {
-          node {
-            name
-          }
-        }
-      }
-    }
   }
 }`;
 
+//     location
+//     repository(name: "${repo}") {
+//       languages(first: 1) {
+//         edges {
+//           node {
+//             name
+//           }
+//         }
+//       }
+//     }
+//   }
+// }`;
   const response = await callEndpoint(query);
   return response;
 }
