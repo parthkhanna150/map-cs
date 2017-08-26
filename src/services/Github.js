@@ -1,5 +1,4 @@
-import { request } from 'graphql-request';
-import { GraphQLClient } from 'graphql-request'
+import request from 'request-promise-native';
 
 import Settings from '../constants/Settings';
 
@@ -11,12 +10,14 @@ function getOptions(query, variables) {
   return {
     method: 'POST',
     uri: baseURL,
-    authorization: `bearer 404c81ffcc86354a6d229af92426c62bb58d3351`,
+    headers: {
+      authorization: `bearer ${accessToken}`,
+    },
     body: {
       query,
       variables,
     },
-//    gzip: true,
+    gzip: true,
     json: true,
   };
 }
@@ -35,30 +36,20 @@ async function getURL(login) {
     rollDice(numDice: $dice, numSides: $sides)
   }`;
   */
-
-const client = new GraphQLClient('https://api.github.com/graphql', {
-  headers: {
-    Authorization: `Bearer 404c81ffcc86354a6d229af92426c62bb58d3351`,
-  },
-})
-
-const variables = {
-  login : 'elailai94',
-  repo_name: 'FloodIt',
-};
-
-// const query = `{
-//   Movie(title: "Inception") {
-//     releaseDate
-//     actors {
-//       name
-//     }
-//   }
-// }`
-
-
-const query = 
-`query repositoryOwner($login: String!) {
+  /*
+  const query = `query {
+    user(login: String!) {
+     location
+    }
+  }`;
+  */
+  const variables = {
+    login: 'elailai94',
+  };
+  // console.log(variables.login)
+  const query = `
+{
+  repositoryOwner(login: "${variables.login}") {
     repositories(first: 30) {
       pageInfo {
         hasNextPage
@@ -70,17 +61,24 @@ const query =
         }
       }
     }
-  }`
+  }
+  user(login: "${variables.login}") {
+    location
+    repository(name: "Hippothesis") {
+      languages(first: 1) {
+        edges {
+          node {
+            name
+          }
+        }
+      }
+    }
+  }
+}`;
+// console.log(query)
 
-return client.request('https://api.github.com/graphql', query, variables).then(data => console.log(data)).catch(error => console.log(error));
-
-  // const query = `query user($login: String!) {
-  //   url
-  // }`;
-  // const variables = {
-  //   login,
-  // };
-
+  const response = await callEndpoint(query, variables);
+  return response;
 }
 
 export { getURL };
