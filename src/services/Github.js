@@ -71,8 +71,8 @@ const query =
       }
     }
   }`
-  
-client.request('https://api.github.com/graphql', query, variables).then(data => console.log(data)).catch(error => console.log(error));
+
+return client.request('https://api.github.com/graphql', query, variables).then(data => console.log(data)).catch(error => console.log(error));
 
   // const query = `query user($login: String!) {
   //   url
@@ -81,8 +81,6 @@ client.request('https://api.github.com/graphql', query, variables).then(data => 
   //   login,
   // };
 
-  // const response = await callEndpoint(query, variables);
-  // return response;
 }
 
 export { getURL };
