@@ -3,7 +3,7 @@ import request from 'request-promise-native';
 import Settings from '../constants/Settings';
 
 // Get the options for a request
-function getOptions(query, variables) {
+function getOptions(query) {
   const baseURL = Settings.github.BASE_URL;
   const accessToken = Settings.github.ACCESS_TOKEN;
 
@@ -15,7 +15,6 @@ function getOptions(query, variables) {
     },
     body: {
       query,
-      variables,
     },
     gzip: true,
     json: true,
@@ -23,26 +22,14 @@ function getOptions(query, variables) {
 }
 
 // Call the endpoint
-async function callEndpoint(query, variables) {
-  const options = getOptions(query, variables);
+async function callEndpoint(query) {
+  const options = getOptions(query);
   const response = await request(options);
 
   return response;
 }
 
 async function getURL(login) {
-  /*
-  var query = `query RollDice($dice: Int!, $sides: Int) {
-    rollDice(numDice: $dice, numSides: $sides)
-  }`;
-  */
-  /*
-  const query = `query {
-    user(login: String!) {
-     location
-    }
-  }`;
-  */
   const variables = {
     login: 'elailai94',
   };
@@ -74,9 +61,8 @@ async function getURL(login) {
     }
   }
 }`;
-// console.log(query)
 
-  const response = await callEndpoint(query, variables);
+  const response = await callEndpoint(query);
   return response;
 }
 
