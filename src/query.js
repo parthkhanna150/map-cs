@@ -1,5 +1,11 @@
-const query = {
-  repositoryOwner(login: variables[login]) {
+
+const variables = {
+  login : "elailai94",
+  repo_name: "FloodIt",
+}
+
+const query = 
+  `repositoryOwner(login: variables[login]) {
     repositories(first: 30) {
       pageInfo {
         hasNextPage
@@ -11,12 +17,7 @@ const query = {
         }
       }
     }
-  };
-
-const variables = {
-  login : "elailai94",
-  repo_name: repo_name,
-}
+  }`;
 
 var repo_name;
 var repo_array;

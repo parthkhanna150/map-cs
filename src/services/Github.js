@@ -1,4 +1,5 @@
-import request from 'request-promise-native';
+import { request } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request'
 
 import Settings from '../constants/Settings';
 
@@ -10,7 +11,7 @@ function getOptions(query, variables) {
   return {
     method: 'POST',
     uri: baseURL,
-    authorization: `bearer ${accessToken}`,
+    authorization: `bearer 404c81ffcc86354a6d229af92426c62bb58d3351`,
     body: {
       query,
       variables,
@@ -34,15 +35,54 @@ async function getURL(login) {
     rollDice(numDice: $dice, numSides: $sides)
   }`;
   */
-  const query = `query user($login: String!) {
-    url
-  }`;
-  const variables = {
-    login,
-  };
 
-  const response = await callEndpoint(query, variables);
-  return response;
+const client = new GraphQLClient('https://api.github.com/graphql', {
+  headers: {
+    Authorization: `Bearer 404c81ffcc86354a6d229af92426c62bb58d3351`,
+  },
+})
+
+const variables = {
+  login : 'elailai94',
+  repo_name: 'FloodIt',
+};
+
+// const query = `{
+//   Movie(title: "Inception") {
+//     releaseDate
+//     actors {
+//       name
+//     }
+//   }
+// }`
+
+
+const query = 
+`query repositoryOwner($login: String!) {
+    repositories(first: 30) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          name
+        }
+      }
+    }
+  }`
+  
+client.request('https://api.github.com/graphql', query, variables).then(data => console.log(data)).catch(error => console.log(error));
+
+  // const query = `query user($login: String!) {
+  //   url
+  // }`;
+  // const variables = {
+  //   login,
+  // };
+
+  // const response = await callEndpoint(query, variables);
+  // return response;
 }
 
 export { getURL };
