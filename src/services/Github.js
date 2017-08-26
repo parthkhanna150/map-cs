@@ -10,7 +10,9 @@ function getOptions(query, variables) {
   return {
     method: 'POST',
     uri: baseURL,
-    authorization: `bearer ${accessToken}`,
+    headers: {
+      authorization: `bearer ${accessToken}`,
+    },
     body: {
       query,
       variables,
@@ -34,12 +36,45 @@ async function getURL(login) {
     rollDice(numDice: $dice, numSides: $sides)
   }`;
   */
-  const query = `query user($login: String!) {
-    url
+  /*
+  const query = `query {
+    user(login: String!) {
+     location
+    }
   }`;
+  */
   const variables = {
-    login,
+    login: 'elailai94',
   };
+  // console.log(variables.login)
+  const query = `{
+  repositoryOwner(login: "${variables.login}") {
+    repositories(first: 30) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          name
+        }
+      }
+    }
+  }
+  user(login: "${variables.login}") {
+    location
+    repository(name: "Hippothesis") {
+      languages(first: 1) {
+        edges {
+          node {
+            name
+          }
+        }
+      }
+    }
+  }
+}`;
+// console.log(query)
 
   const response = await callEndpoint(query, variables);
   return response;

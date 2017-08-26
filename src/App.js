@@ -5,9 +5,9 @@ import { getURL } from './services/Github';
 
 class App extends Component {
   componentDidMount() {
-    console.log(getURL('elailai94'));
+    getURL('elailai94').then(response => console.log(response)).catch(error => console.log(error));
   };
-  
+
   render() {
     return (
       <div className="App">
