@@ -4,12 +4,13 @@ import Settings from '../constants/Settings';
 
 // Get the options for a request
 function getOptions(query) {
-  const baseURL = Settings.github.BASE_URL;
   const accessToken = Settings.github.ACCESS_TOKEN;
+  const baseURL = Settings.github.BASE_URL;
+  const graphQLPath = Settings.github.GRAPHQL_PATH;
 
   return {
     method: 'POST',
-    uri: baseURL,
+    uri: `${baseURL}${graphQLPath}`,
     headers: {
       authorization: `bearer ${accessToken}`,
     },
@@ -39,9 +40,12 @@ variables.login.map(username => {
 
 async function getURL(login) {
 
+/*
+ * Gets
+ */
   const query = 
 `{
-  user(login: "${login}") {
+  repositoryOwner(login: "${login}") {
     repositories(first: 30) {
       pageInfo {
         hasNextPage
@@ -50,6 +54,18 @@ async function getURL(login) {
       edges {
         node {
           name
+        }
+      }
+    }
+  }
+  user(login: "${login}") {
+    location
+    repository(name: "Hippothesis") {
+      languages(first: 1) {
+        edges {
+          node {
+            name
+          }
         }
       }
     }
