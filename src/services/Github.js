@@ -32,11 +32,12 @@ async function callEndpoint(query) {
 async function getURL(login) {
   const variables = {
     login: 'elailai94',
+    repo: 'Hippothesis'
   };
   // console.log(variables.login)
   const query = `
 {
-  repositoryOwner(login: "${variables.login}") {
+  user(login: "${variables.login}") {
     repositories(first: 30) {
       pageInfo {
         hasNextPage
@@ -48,10 +49,8 @@ async function getURL(login) {
         }
       }
     }
-  }
-  user(login: "${variables.login}") {
     location
-    repository(name: "Hippothesis") {
+    repository(name: "${variables.repo}") {
       languages(first: 1) {
         edges {
           node {
