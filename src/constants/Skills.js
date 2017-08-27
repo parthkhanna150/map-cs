@@ -7,10 +7,14 @@ const Skills = [
   { key: 'c', value: 'c', text: 'C' },
   { key: 'c++', value: 'C++', text: 'C++' },
   { key: 'c#', value: 'C#', text: 'C#' },
-  
+
   { key: 'charity', value: 'charity', text: 'Charity' },
   { key: 'clean', value: 'clean', text: 'Clean' },
+  { key: 'cleo', value: 'cleo', text: 'CLEO'},
+  { key: 'COBOL', value: 'COBOL', text: 'COBOL' },
+  { key: 'cobra', value: 'cobra', text: 'Cobra' },
   { key: 'curry', value: 'curry', text: 'Curry' },
+  { key: 'd', value: 'd', text: 'D' },
   { key: 'eiffel', value: 'eiffel', text: 'Eiffel' },
   { key: 'erlang', value: 'erlang', text: 'Erlang' },
   { key: 'f#', value: 'f#', text: 'f#' },
