@@ -35,9 +35,12 @@ async function callEndpoint(query) {
 // variables.login.map(username => {
 //   return getURL(username).then(response => console.log(response)).catch(error => console.log(error));   
 // })
+var object_map = { 
+};
 var repos=[];
 var langs_array=[];
 async function getRepos(login) {
+  object_map.username = login;
 // console.log(login);
 /*
  * Gets
@@ -67,8 +70,7 @@ const response = await callEndpoint(query);
   repos.push(response.data.user.repositories.edges[i].node.name);
   i++;
 }
-
-
+// object_map.repos_array = repos;
   //parse response for repos array
   //fetch languages by passing repos array
   return repos;
@@ -82,8 +84,11 @@ async function getLocation(login) {
     }
   }`;
 
-  const loc = await callEndpoint(location_query);
-  // console.log(loc);
+  var loc = await callEndpoint(location_query);
+  if(loc!==null){
+    loc = loc.data.user.location;
+    object_map.location = loc;
+  }
   return loc;
 }
 
@@ -93,7 +98,7 @@ async function getLanguages(login) {
   var i = 0;
 
   while (i<15) {
-    console.log(repos[i]);
+    // console.log(repos[i]);
     languages_query = 
     `{
       user(login: "${login}") {
@@ -113,12 +118,16 @@ async function getLanguages(login) {
 
     const langs = await callEndpoint(languages_query);
     if (langs.data.user.repository!==null){
-      console.log(langs);
+      // console.log(langs);
       langs_array.push(langs.data.user.repository.languages.edges[0].node.name);
     }
   }
   // console.log(langs_array);
+  object_map.languages = langs_array;
   return langs_array;
 }
+
+console.log(object_map);
+
 export { getRepos, getLocation, getLanguages };
 

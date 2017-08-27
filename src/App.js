@@ -11,12 +11,12 @@ class App extends Component {
   //   super();
   //   users = ['elailai94', 'parthkhanna150'];
   // }
-
-  componentDidMount() {
-    getRepos('elailai94');
-    getLocation('elailai94');
-    getLanguages('elailai94');
-  };
+  
+  // componentDidMount() {
+  //   getRepos().catch(error => console.log(error));
+  //   getLocation().catch(error => console.log(error));
+  //   getLanguages().catch(error => console.log(error));
+  // };
 
   render() {
     return (
