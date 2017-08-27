@@ -27,7 +27,7 @@ function getUserRepositoriesSuccess(response) {
 
 function getUserRepositoriesFailure(error) {
   return {
-    type: ActionTypes.userRepositories.GET_USER_LOCATION_FAILURE,
+    type: ActionTypes.userRepositories.GET_USER_REPOSITORIES_FAILURE,
     payload: {
       status: 'failure',
       error,

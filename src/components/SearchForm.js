@@ -15,6 +15,7 @@ class SearchForm extends Component {
 
   handleSubmit = () => {
 
+
     // const { submittedLocation, submittedSkills, submittedGithub_user } = this.state;
     // this.setState({ submittedLocation, submittedSkills, submittedGithub_user });
 
@@ -26,25 +27,39 @@ class SearchForm extends Component {
 
   render() {
     const skillsOptions = Skills;
+    const { onAddItem } = this.props;
+    const { onChange } = this.props;
+    const { onSubmit } = this.props;
 
     return (
       <Container>
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={onSubmit}>
         <Form.Group widths={'equal'}>
-          <Form.Input name={'submittedLocation'} onChange={this.handleChange} placeholder={'Location'} />
+          <Form.Input
+            name={'submittedLocation'}
+            onChange={onChange}
+            placeholder={'Location'}
+          />
           <Form.Dropdown
             allowAdditions
             fluid
             multiple
             name={'submittedSkills'}
             options={skillsOptions}
-            onChange={this.handleChange}
+            onAddItem={onAddItem}
+            onChange={onChange}
             placeholder={'Skills'}
             search
             selection
           />
-          <Form.Input name={'submittedGithub_user'} onChange={this.handleChange} placeholder={'GitHub Username'} />
-          <Form.Button fluid>Search</Form.Button>
+          <Form.Input
+            name={'submittedGithubUsername'}
+            onChange={onChange}
+            placeholder={'GitHub Username'}
+          />
+          <Form.Button fluid>
+            Search
+          </Form.Button>
         </Form.Group>
       </Form>
     </Container>

@@ -11,21 +11,21 @@ import { getUserLocation } from './actions/UserLocationActions';
 import { getUserRepositories } from './actions/UserRepositoriesActions';
 
 class App extends Component {
-  componentWillMount() {
-    const { getUserLanguages } = this.props;
-    const { getUserLocation } = this.props;
-    const { getUserRepositories } = this.props;
-
-    getUserLanguages('elailai94');
-    getUserLocation('elailai94');
-    getUserRepositories('elailai94');
-  }
-
   componentDidMount() {
     document.title = 'SkillMap';
   }
 
+
+
   render() {
+    const { submittedGithubUsername } = this.props;
+    const { getUserLanguages } = this.props;
+    const { getUserLocation } = this.props;
+    const { getUserRepositories } = this.props;
+    const { userLocation } = this.props;
+    const locations = (userLocation.response.id !== '')?
+      [ userLocation.response ] : [];
+
     return (
       <Segment
         color={'blue'}
@@ -35,8 +35,16 @@ class App extends Component {
         vertical
       >
         <NavigationBar siteLogo={siteLogo} />
-        <SearchForm />
-        <TravelMap locations={[{id: 1, name: 'stuff', lat: 37.778519, lng: -122.405640}]}/>
+        <SearchForm
+          //onAddItem={(event, {})}
+          //onChange={() => }
+          onSubmit={() => {
+            getUserLanguages('elailai94');
+            getUserLocation('elailai94');
+            getUserRepositories('elailai94');
+          }}
+        />
+        <TravelMap locations={locations}/>
       </Segment>
     );
   }
@@ -50,9 +58,10 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
-    status: state.userLocation.status,
-    response: state.userLocation.response,
-    error: state.userLocation.error,
+    userLocation: state.userLocation,
+    submittedLocation: state.submittedLocation,
+    submittedSkills: state.submittedSkills,
+    submittedGithubUsername: state.submittedGithubUsername,
   };
 }
 

@@ -14,6 +14,15 @@ const ActionTypes = {
     GET_USER_LANGUAGES_SUCCESS: 'GET_USER_LANGUAGES_SUCCESS',
     GET_USER_LANGUAGES_FAILURE: 'GET_USER_LANGUAGES_FAILURE',
   },
+  submittedLocation: {
+    SET_SUBMITTED_LOCATION: 'SET_SUBMITTED_LOCATION',
+  },
+  submittedSkills: {
+    SET_SUBMITTED_SKILLS: 'SET_SUBMITTED_SKILLS',
+  },
+  submittedGithubUsername: {
+    SET_SUBMITTED_GITHUB_USERNAME: 'SET_SUBMITTED_GITHUB_USERNAME',
+  },
 };
 
 export default ActionTypes;

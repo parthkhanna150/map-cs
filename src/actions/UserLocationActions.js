@@ -53,7 +53,7 @@ function getUserLocation(username) {
             dispatch(getUserLocationSuccess(coordinates));
           })
           .catch(error => {
-            const errorDetail = parseUserLocationError(error);
+            const errorDetail = parseUserCoordinatesError(error);
             dispatch(getUserLocationFailure(errorDetail));
           });
       })
