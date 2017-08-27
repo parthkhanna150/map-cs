@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { Segment } from 'semantic-ui-react';
+
+import NavigationBar from './components/NavigationBar';
+import SearchForm from './components/SearchForm';
+// import { getURL } from './services/Github';
 
 import { getRepos, getLocation, getLanguages } from './services/Github';
 class App extends Component {
@@ -15,11 +20,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-            Welcome to map
-        </div>
-      </div>
+      <Segment
+        inverted
+        vertical
+        color={'blue'}
+      >
+        <NavigationBar />
+        <SearchForm />
+      </Segment>
     );
   }
 }
