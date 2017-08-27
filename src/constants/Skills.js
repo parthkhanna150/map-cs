@@ -6,6 +6,8 @@ const Skills = [
   { key: 'basic', value: 'basic', text: 'BASIC' },
   { key: 'c', value: 'c', text: 'C' },
   { key: 'c++', value: 'C++', text: 'C++' },
+  { key: 'c#', value: 'C#', text: 'C#' },
+  
   { key: 'charity', value: 'charity', text: 'Charity' },
   { key: 'clean', value: 'clean', text: 'Clean' },
   { key: 'curry', value: 'curry', text: 'Curry' },
