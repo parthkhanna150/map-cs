@@ -30,23 +30,21 @@ async function callEndpoint(query) {
   return response;
 }
 
-const variables = {
-  login: ['elailai94', 'parthkhanna150', 'graphcool', 'AllanWang', 'hiyangyue']
-}
 
-variables.login.map(username => {
-  return getURL(username).then(response => console.log(response)).catch(error => console.log(error));   
-})
+
+// variables.login.map(username => {
+//   return getURL(username).then(response => console.log(response)).catch(error => console.log(error));   
+// })
 
 async function getURL(login) {
-
+console.log(login);
 /*
  * Gets
  */
   const query = 
 `{
-  repositoryOwner(login: "${login}") {
-    repositories(first: 30) {
+  user(login: "${login}") {
+    repositories(first: 15) {
       pageInfo {
         hasNextPage
         endCursor
@@ -58,9 +56,30 @@ async function getURL(login) {
       }
     }
   }
+}`;
+
+
+  const response = await callEndpoint(query);
+   console.log(response);
+
+  var i=0;
+  var repos=[];
+  while(true) {
+    if(i<15){
+      repos.push(response.data.user.repositories.edges[i].node.name);
+      i++;
+    }
+    else{
+      // console.log(repos);
+      break;
+    }
+  }
+ 
+  const languages_query = 
+`{
   user(login: "${login}") {
     location
-    repository(name: "Hippothesis") {
+    repository(name: "${repos}") {
       languages(first: 1) {
         edges {
           node {
@@ -71,21 +90,13 @@ async function getURL(login) {
     }
   }
 }`;
+  const langs = await callEndpoint(languages_query);
+  console.log(langs);
 
-//     location
-//     repository(name: "${repo}") {
-//       languages(first: 1) {
-//         edges {
-//           node {
-//             name
-//           }
-//         }
-//       }
-//     }
-//   }
-// }`;
-  const response = await callEndpoint(query);
+  //parse response for repos array
+  //fetch languages by passing repos array
   return response;
 }
+
 
 export { getURL };

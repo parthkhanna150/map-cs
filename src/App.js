@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
-// import { getURL } from './services/Github';
-
+import { getURL } from './services/Github';
 class App extends Component {
-  // componentDidMount() {
-  //   getURL('elailai94').then(response => console.log(response)).catch(error => console.log(error));
-  // };
+  // constructor() {
+  //   super();
+  //   users = ['elailai94', 'parthkhanna150'];
+  // }
+
+  componentDidMount() {
+    getURL('elailai94').then(response => console.log(response)).catch(error => console.log(error));
+  };
 
   render() {
     return (
