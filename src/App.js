@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getURL } from './services/Github';
+import { getRepos, getLocation, getLanguages } from './services/Github';
 class App extends Component {
   // constructor() {
   //   super();
@@ -8,7 +8,9 @@ class App extends Component {
   // }
 
   componentDidMount() {
-    getURL('elailai94').then(response => console.log(response)).catch(error => console.log(error));
+    getRepos('elailai94');
+    getLocation('elailai94');
+    getLanguages('elailai94');
   };
 
   render() {
