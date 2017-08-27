@@ -30,79 +30,57 @@ async function callEndpoint(query) {
   return response;
 }
 
-
-
-// variables.login.map(username => {
-//   return getURL(username).then(response => console.log(response)).catch(error => console.log(error));
-// })
-var object_map = {
-};
-var repos=[];
-var langs_array=[];
-async function getRepos(login) {
-  object_map.username = login;
-// console.log(login);
-/*
- * Gets
- */
- const query =
- `{
-  user(login: "${login}") {
-    repositories(first: 15) {
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-      edges {
-        node {
-          name
+// Get the public repositories for the specified user
+async function getRepositories(username) {
+  const numOfRepositories = 5;
+  const query = `{
+    user(login: "${username}") {
+      repositories(first: ${numOfRepositories}) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            name
+          }
         }
       }
     }
-  }
-}`;
+  }`;
 
-const response = await callEndpoint(query);
- // console.log(response);
-
- var i=0;
- while(i<15) {
-  repos.push(response.data.user.repositories.edges[i].node.name);
-  i++;
-}
-// object_map.repos_array = repos;
-  //parse response for repos array
-  //fetch languages by passing repos array
-  return repos;
+  const response = await callEndpoint(query);
+  return response;
 }
 
-async function getLocation(login) {
-  const location_query =
-  `{
-    user(login: "${login}") {
+// Get the location for the specified user
+async function getLocation(username) {
+  const query = `{
+    user(login: "${username}") {
       location
     }
   }`;
 
-  var loc = await callEndpoint(location_query);
-  if(loc!==null){
-    loc = loc.data.user.location;
-    object_map.location = loc;
-  }
-  return loc;
+  const response =  await callEndpoint(query);
+  return response;
 }
 
-async function getLanguages(login) {
-  var languages_query;
-  var repos = await getRepos(login);
-  var i = 0;
+// Get the languages for the specified user based their repositories
+async function getLanguages(username) {
+  const numOfRepositories = 5;
+  let repositories = await getRepositories(username);
+  let userRepositories = [];
 
-  while (i<15) {
-    // console.log(repos[i]);
-    languages_query =
-    `{
-      user(login: "${login}") {
-        repository(name: "${repos[i]}") {
+  for (let i = 0; i < numOfRepositories; i++) {
+    userRepositories.push(repositories.data.user.repositories.edges[i].node.name);
+  }
+
+  let languages = new Set();
+
+  for (let i = 0; i < numOfRepositories; i++) {
+    const query = `{
+      user(login: "${username}") {
+        repository(name: "${userRepositories[i]}") {
           languages(first: 1) {
             edges {
               node {
@@ -114,19 +92,18 @@ async function getLanguages(login) {
       }
     }`;
 
-    i++;
+    const response = await callEndpoint(query);
 
-    const langs = await callEndpoint(languages_query);
-    if (langs.data.user.repository!==null){
-      // console.log(langs);
-      langs_array.push(langs.data.user.repository.languages.edges[0].node.name);
+    if (response.data.user.repository !== null) {
+      languages.add(response.data.user.repository.languages.edges[0].node.name);
     }
   }
-  // console.log(langs_array);
-  object_map.languages = langs_array;
-  return langs_array;
+
+  return [...languages];
 }
 
-console.log(object_map);
-
-export { getRepos, getLocation, getLanguages };
+export {
+  getRepositories,
+  getLocation,
+  getLanguages,
+};

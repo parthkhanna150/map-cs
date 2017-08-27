@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Form } from 'semantic-ui-react';
 
 import Skills from '../constants/Skills';
-import { getRepos, getLocation, getLanguages } from '../services/Github';
+import { getRepositories, getLocation, getLanguages } from '../services/Github';
 
 class SearchForm extends Component {
 
@@ -18,7 +18,7 @@ class SearchForm extends Component {
     // const { submittedLocation, submittedSkills, submittedGithub_user } = this.state;
     // this.setState({ submittedLocation, submittedSkills, submittedGithub_user });
 
-    getRepos(this.state.submittedGithub_user).catch(error => console.log(error));
+    getRepositories(this.state.submittedGithub_user).catch(error => console.log(error));
     getLocation(this.state.submittedGithub_user).catch(error => console.log(error));
     getLanguages(this.state.submittedGithub_user).catch(error => console.log(error));
     this.state.submittedGithub_user=null;
@@ -43,7 +43,7 @@ class SearchForm extends Component {
             search
             selection
           />
-          <Form.Input name={'submittedGithub_user'} onChange={this.handleChange} placeholder={'GitHub User'} />
+          <Form.Input name={'submittedGithub_user'} onChange={this.handleChange} placeholder={'GitHub Username'} />
           <Form.Button fluid>Search</Form.Button>
         </Form.Group>
       </Form>

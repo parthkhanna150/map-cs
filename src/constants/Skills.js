@@ -5,7 +5,7 @@ const Skills = [
   { key: 'applescript', value: 'applescript', text: 'AppleScript' },
   { key: 'autoit', value: 'autoit', text: 'AutoIt' },
   { key: 'basic', value: 'basic', text: 'BASIC' },
-  { key: 'bliss', value: 'bliss', text: 'bliss' },
+  { key: 'bliss', value: 'bliss', text: 'Bliss' },
   { key: 'c', value: 'c', text: 'C' },
   { key: 'c++', value: 'C++', text: 'C++' },
   { key: 'c#', value: 'C#', text: 'C#' },
