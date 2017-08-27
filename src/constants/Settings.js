@@ -6,6 +6,8 @@ const Settings = {
   },
   google: {
     API_KEY: process.env.REACT_APP_GOOGLE_API_KEY,
+    BASE_URL: 'https://maps.googleapis.com',
+    GEOCODING_PATH: '/maps/api/geocode/json',
   },
 };
 

@@ -34,6 +34,24 @@ function parseUserLanguagesError(error) {
   return 'Error';
 }
 
+function parseUserCoordinatesResponse(response) {
+  const id = response.results[0].place_id;
+  const name = response.results[0].formatted_address;
+  const { lat } = response.results[0].geometry.location;
+  const { lng } = response.results[0].geometry.location;
+
+  return {
+    id,
+    name,
+    lat,
+    lng,
+  };
+}
+
+function parseUserCoordinatesError(error) {
+  return 'Error';
+}
+
 export {
   parseUserLocationResponse,
   parseUserLocationError,
@@ -41,4 +59,6 @@ export {
   parseUserRepositoriesError,
   parseUserLanguagesResponse,
   parseUserLanguagesError,
+  parseUserCoordinatesResponse,
+  parseUserCoordinatesError,
 };

@@ -1,9 +1,12 @@
 import ActionTypes from '../constants/ActionTypes';
 
 import { getLocation } from '../services/Github';
+import { getCoordinates } from '../services/Google';
 import {
   parseUserLocationResponse,
   parseUserLocationError,
+  parseUserCoordinatesResponse,
+  parseUserCoordinatesError,
 } from '../utilities/Parser';
 
 function getUserLocationRequest() {
@@ -42,7 +45,17 @@ function getUserLocation(username) {
     return getLocation(username)
       .then(response => {
         const location = parseUserLocationResponse(response);
-        dispatch(getUserLocationSuccess(location));
+        dispatch(getUserLocationRequest());
+
+        return getCoordinates(location)
+          .then(response => {
+            const coordinates = parseUserCoordinatesResponse(response);
+            dispatch(getUserLocationSuccess(coordinates));
+          })
+          .catch(error => {
+            const errorDetail = parseUserLocationError(error);
+            dispatch(getUserLocationFailure(errorDetail));
+          });
       })
       .catch(error => {
         const errorDetail = parseUserLocationError(error);
