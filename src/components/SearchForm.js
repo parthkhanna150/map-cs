@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form} from 'semantic-ui-react';
+import { Container, Form } from 'semantic-ui-react';
 
 import Skills from '../constants/Skills';
 import { getRepos, getLocation, getLanguages } from '../services/Github';
@@ -33,6 +33,7 @@ class SearchForm extends Component {
         <Form.Group widths={'equal'}>
           <Form.Input name={'submittedLocation'} onChange={this.handleChange} placeholder={'Location'} />
           <Form.Dropdown
+            allowAdditions
             fluid
             multiple
             name={'submittedSkills'}
@@ -42,8 +43,15 @@ class SearchForm extends Component {
             search
             selection
           />
+<<<<<<< HEAD
           <Form.Input name={'submittedGithub_user'} onChange={this.handleChange} placeholder={'GitHub User'} />
           <Form.Button fluid>Search</Form.Button>
+=======
+          <Form.Input name={'github user'} placeholder={'GitHub User'} />
+          <Form.Button fluid>
+            Search
+          </Form.Button>
+>>>>>>> 2044062ffa12cbc54787c00099525fda522db6cf
         </Form.Group>
       </Form>
     </Container>
