@@ -44,9 +44,7 @@ class SearchForm extends Component {
             selection
           />
           <Form.Input name={'submittedGithub_user'} onChange={this.handleChange} placeholder={'GitHub User'} />
-          <Form.Button fluid>
-            Search
-          </Form.Button>
+          <Form.Button fluid>Search</Form.Button>
         </Form.Group>
       </Form>
     </Container>
