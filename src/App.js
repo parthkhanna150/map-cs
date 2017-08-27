@@ -10,11 +10,11 @@ class App extends Component {
   //   super();
   //   users = ['elailai94', 'parthkhanna150'];
   // }
-
+/*
   componentDidMount() {
     getURL('elailai94').then(response => console.log(response)).catch(error => console.log(error));
   };
-
+*/
   render() {
     return (
       <Segment
