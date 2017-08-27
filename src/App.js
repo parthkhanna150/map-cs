@@ -5,7 +5,8 @@ import NavigationBar from './components/NavigationBar';
 import SearchForm from './components/SearchForm';
 // import { getURL } from './services/Github';
 
-import { getRepos, getLocation, getLanguages } from './services/Github';
+//import { getRepos, getLocation, getLanguages } from './services/Github';
+
 class App extends Component {
   // constructor() {
   //   super();
