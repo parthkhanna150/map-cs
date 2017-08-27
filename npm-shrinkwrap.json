@@ -2523,6 +2523,11 @@
       "integrity": "sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=",
       "dev": true
     },
+    "deep-diff": {
+      "version": "0.3.8",
+      "resolved": "https://registry.npmjs.org/deep-diff/-/deep-diff-0.3.8.tgz",
+      "integrity": "sha1-wB3mPvsO7JeYgB1Ax+Da4ltYLIQ="
+    },
     "deep-equal": {
       "version": "1.0.1",
       "resolved": "https://registry.npmjs.org/deep-equal/-/deep-equal-1.0.1.tgz",
@@ -5286,6 +5291,11 @@
       "version": "2.16.3",
       "resolved": "https://registry.npmjs.org/hoek/-/hoek-2.16.3.tgz",
       "integrity": "sha1-ILt0A9POo5jpHcRxCo/xuCdKJe0="
+    },
+    "hoist-non-react-statics": {
+      "version": "2.3.0",
+      "resolved": "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-2.3.0.tgz",
+      "integrity": "sha1-7eFjGML/H5/joCU5a6Bv1MRGCLs="
     },
     "home-or-tmp": {
       "version": "2.0.0",
@@ -9283,6 +9293,19 @@
         }
       }
     },
+    "react-redux": {
+      "version": "5.0.6",
+      "resolved": "https://registry.npmjs.org/react-redux/-/react-redux-5.0.6.tgz",
+      "integrity": "sha512-8taaaGu+J7PMJQDJrk/xiWEYQmdo3mkXw6wPr3K3LxvXis3Fymiq7c13S+Tpls/AyNUAsoONkU81AP0RA6y6Vw==",
+      "requires": {
+        "hoist-non-react-statics": "2.3.0",
+        "invariant": "2.2.2",
+        "lodash": "4.17.4",
+        "lodash-es": "4.17.4",
+        "loose-envify": "1.3.1",
+        "prop-types": "15.5.10"
+      }
+    },
     "react-scripts": {
       "version": "1.0.11",
       "resolved": "https://registry.npmjs.org/react-scripts/-/react-scripts-1.0.11.tgz",
@@ -9518,6 +9541,14 @@
         "lodash-es": "4.17.4",
         "loose-envify": "1.3.1",
         "symbol-observable": "1.0.4"
+      }
+    },
+    "redux-logger": {
+      "version": "3.0.6",
+      "resolved": "https://registry.npmjs.org/redux-logger/-/redux-logger-3.0.6.tgz",
+      "integrity": "sha1-91VZZvMJjzyIYExEnPC69XeCdL8=",
+      "requires": {
+        "deep-diff": "0.3.8"
       }
     },
     "regenerate": {
