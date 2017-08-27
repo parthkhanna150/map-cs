@@ -4,7 +4,6 @@ import Settings from '../constants/Settings';
 
 // Get the options for a request
 function getOptions(queryStrings) {
-  const APIKey = Settings.google.API_KEY;
   const baseURL = Settings.google.BASE_URL;
   const geocodingPath = Settings.google.GEOCODING_PATH;
 

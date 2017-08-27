@@ -18,7 +18,7 @@ class App extends Component {
 
 
   render() {
-    const { submittedGithubUsername } = this.props;
+    //const { submittedGithubUsername } = this.props;
     const { getUserLanguages } = this.props;
     const { getUserLocation } = this.props;
     const { getUserRepositories } = this.props;
@@ -37,7 +37,9 @@ class App extends Component {
         <NavigationBar siteLogo={siteLogo} />
         <SearchForm
           //onAddItem={(event, {})}
-          //onChange={() => }
+          onChange={() => {
+
+          }}
           onSubmit={() => {
             getUserLanguages('elailai94');
             getUserLocation('elailai94');
