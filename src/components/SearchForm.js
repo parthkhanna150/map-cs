@@ -43,15 +43,10 @@ class SearchForm extends Component {
             search
             selection
           />
-<<<<<<< HEAD
           <Form.Input name={'submittedGithub_user'} onChange={this.handleChange} placeholder={'GitHub User'} />
-          <Form.Button fluid>Search</Form.Button>
-=======
-          <Form.Input name={'github user'} placeholder={'GitHub User'} />
           <Form.Button fluid>
             Search
           </Form.Button>
->>>>>>> 2044062ffa12cbc54787c00099525fda522db6cf
         </Form.Group>
       </Form>
     </Container>
