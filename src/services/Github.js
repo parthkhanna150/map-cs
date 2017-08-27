@@ -33,9 +33,9 @@ async function callEndpoint(query) {
 
 
 // variables.login.map(username => {
-//   return getURL(username).then(response => console.log(response)).catch(error => console.log(error));   
+//   return getURL(username).then(response => console.log(response)).catch(error => console.log(error));
 // })
-var object_map = { 
+var object_map = {
 };
 var repos=[];
 var langs_array=[];
@@ -45,7 +45,7 @@ async function getRepos(login) {
 /*
  * Gets
  */
- const query = 
+ const query =
  `{
   user(login: "${login}") {
     repositories(first: 15) {
@@ -77,7 +77,7 @@ const response = await callEndpoint(query);
 }
 
 async function getLocation(login) {
-  const location_query =   
+  const location_query =
   `{
     user(login: "${login}") {
       location
@@ -99,7 +99,7 @@ async function getLanguages(login) {
 
   while (i<15) {
     // console.log(repos[i]);
-    languages_query = 
+    languages_query =
     `{
       user(login: "${login}") {
         repository(name: "${repos[i]}") {
@@ -130,4 +130,3 @@ async function getLanguages(login) {
 console.log(object_map);
 
 export { getRepos, getLocation, getLanguages };
-
