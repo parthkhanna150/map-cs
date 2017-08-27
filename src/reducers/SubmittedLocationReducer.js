@@ -1,17 +1,11 @@
 import ActionTypes from '../constants/ActionTypes';
 
-const initialState = {
-  id: '',
-  name: '',
-  lat: 0,
-  lng: 0,
-};
+const initialState = '';
 
 function setSubmittedLocation(state = initialState, action) {
   const { submittedLocation } = action.payload;
-  return {
 
-  };
+  return submittedLocation;
 }
 
 function SubmittedLocationReducer(state = initialState, action) {

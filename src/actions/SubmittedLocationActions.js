@@ -4,7 +4,7 @@ function setSubmittedLocation(location) {
   return {
     type: ActionTypes.submittedLocation.SET_SUBMITTED_LOCATION,
     payload: {
-      location,
+      submittedLocation: location,
     },
   };
 }

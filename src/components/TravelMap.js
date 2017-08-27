@@ -13,6 +13,37 @@ import PropTypes from 'prop-types';
 import Settings from '../constants/Settings';
 
 class TravelMap extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+    }
+
+    // binding this to event-handler functions
+    this.onMarkerClick = this.onMarkerClick.bind(this);
+    this.onMapClicked = this.onMapClicked.bind(this);
+  }
+
+  onMarkerClick(props, marker, e) {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+    alert(['C++', 'JavaScript', 'Python']);
+  }
+
+  onMapClicked(props) {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  }
+
   render() {
     const { google } = this.props;
     const { locations } = this.props;
@@ -43,6 +74,7 @@ class TravelMap extends Component {
                 <Marker
                   key={id}
                   name={name}
+                  onClick={this.onMarkerClick}
                   position={{lat: lat, lng: lng}}
                 />
              );

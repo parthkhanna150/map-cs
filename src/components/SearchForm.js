@@ -16,7 +16,6 @@ class SearchForm extends Component {
         <Form.Group widths={'equal'}>
           <Form.Input
             name={'submittedLocation'}
-            onChange={onChange}
             placeholder={'Location'}
           />
           <Form.Dropdown
@@ -26,7 +25,6 @@ class SearchForm extends Component {
             name={'submittedSkills'}
             options={skillsOptions}
             onAddItem={onAddItem}
-            onChange={onChange}
             placeholder={'Skills'}
             search
             selection
