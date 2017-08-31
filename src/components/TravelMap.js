@@ -93,7 +93,7 @@ TravelMap.propTypes = {
 const styles = {
   map: {
     height: '100%',
-    width: '88%',
+    width: '85%',
   },
 };
 
