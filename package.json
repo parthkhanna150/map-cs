@@ -24,7 +24,7 @@
     "semantic-ui-react": "^0.71.5"
   },
   "devDependencies": {
-    "react-scripts": "^1.0.6",
+    "react-scripts": "^5.0.1",
     "surge": "^0.19.0"
   }
 }
